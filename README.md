@@ -34,6 +34,7 @@ The script will create a folder named `example` and save the split PDF files ins
 
 ## License
 
-This script is released under the [MIT License](LICENSE).
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
 
 
