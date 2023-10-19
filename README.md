@@ -12,9 +12,7 @@ This Python script allows you to split a large PDF file into smaller PDF files. 
 3. Clone or download this repository to your computer.
 4. Navigate to the directory where the script is located.
 5.  To install the required PyPDF2 library, open a terminal or command prompt, navigate to the directory with the script, and run the following command:
-|pip install -r requirements.txt|
-or
-|pip install PyPDF2|
+`pip install -r requirements.txt` or `pip install PyPDF2`
 7.  Run the script using the following command:
 8. Follow the on-screen instructions to split your PDF file:
 - Enter the name of the large PDF file (with or without .pdf ending).
