@@ -2,7 +2,6 @@
 This Python script allows you to split a large PDF file into smaller PDF files. You can specify the input PDF file, the prefix for the output files, and the number of pages per small file.
 
 ## Requirements
-
 - Python 3.x
 - PyPDF2 library (you can install it using `pip install PyPDF2`)
 
@@ -33,7 +32,6 @@ Enter the following when prompted:
 The script will create a folder named `example` and save the split PDF files inside.
 
 ## License
-
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 
