@@ -20,7 +20,7 @@ jobs:
         shell: bash
       - name: Extract branch name
         shell: bash
-        run: echo "::set-output branch={branh}::{$(echo $GITHUB_REF | sed 's/refs\/heads\///')}"
+        run: echo branch=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
         id: extract_branch
             
       - name: Install Python
