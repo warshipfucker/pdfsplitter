@@ -43,12 +43,10 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REF: $GITHUB_REF"
-          TAG_NAME: $(echo $GITHUB_REF | sed 's/refs\/heads\///')"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
         with:
-          tag_name: ${{ env.TAG_NAME }}
-          release_name: ${{ env.TAG_NAME }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body_path: README.md
           draft: false
           prerelease: false
