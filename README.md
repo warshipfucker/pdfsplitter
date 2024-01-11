@@ -1,11 +1,23 @@
 # pdfsplitter
+
 This Python script allows you to split a large PDF file into smaller PDF files. You can specify the input PDF file, the prefix for the output files, and the number of pages per small file.
+
+## Usage Windows
+1. Download release - [Exe File](https://github.com/warshipfucker/pdfsplitter/releases/)
+2. Put the big pdf file (the file you want to split) to same folder with pdfsplitter.exe file
+3. Run pdfsplitter.exe
+4. Follow the on-screen instructions to split your PDF file:
+- Enter the name of the large PDF file (with or without .pdf ending).
+- Enter the prefix for the output files.
+- Enter the number of pages per small file.
+5. The script will create a folder with the same name as the input PDF file (without the .pdf extension) and save the smaller PDF files there.
+6. The process is completed, and you will find the splited PDF files in the specified folder.
 
 ## Requirements
 - Python 3.x
 - PyPDF2 library (you can install it using `pip install PyPDF2`)
 
-## Usage
+## Usage of source code
 1. Download and install Python from the [official website](https://www.python.org/downloads/).
 2. Open a terminal or command prompt.
 3. Clone or download this repository to your computer.
