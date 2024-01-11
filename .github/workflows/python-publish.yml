@@ -2,33 +2,36 @@ name: Build Workflow
 
 on:
   push:
-     branches:
-     - '*' 
-jobs:
+    branches:
+      - '*' 
 
+jobs:
   build-windows:
     runs-on: windows-2019
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Get registration token
-        id: getRegToken
-        run: |
-          curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/myprofile/myrepo/actions/runners/registration-token
+
       - name: Set tag name from branch
         run: echo "TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_ENV
+
       - name: Install Python
         uses: actions/setup-python@v1
         with:
           python-version: '3.7'
           architecture: 'x64'
+
       - name: Install requirements
         run: |
           pip install -r requirements.txt
+
       - name: Run PyInstaller
         run: |
           python -m PyInstaller pdfsplitter.spec
-      - uses: actions/upload-artifact@v2
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
           name: Windows_pdfsplitter
           path: dist/pdfsplitter.exe
