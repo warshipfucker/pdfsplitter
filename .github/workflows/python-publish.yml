@@ -45,7 +45,7 @@ jobs:
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
         with:
           tag_name: ${{ env.BRANCH_NAME }}
-          release_name: ${{ env.BRANCH_NAME }}
+          release_name: Release ${{ env.BRANCH_NAME }}
           body_path: README.md
           draft: false
           prerelease: false
