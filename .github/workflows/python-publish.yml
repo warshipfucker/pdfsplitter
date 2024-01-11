@@ -15,7 +15,8 @@ jobs:
         id: getRegToken
         run: |
           curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/myprofile/myrepo/actions/runners/registration-token
-        
+      - name: Set tag name from branch
+        run: echo "TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_ENV
       - name: Install Python
         uses: actions/setup-python@v1
         with:
@@ -39,8 +40,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ github.ref_name }}
         with:
-          tag_name: ${GITHUB_REF##*/}
-          release_name: ${GITHUB_REF##*/}
+          tag_name: Release ${{ env.TAG_NAME }}
+          release_name: Release ${{ env.TAG_NAME }}
           body_path: README.md
           draft: false
           prerelease: false
