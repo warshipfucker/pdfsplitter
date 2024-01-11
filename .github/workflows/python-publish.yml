@@ -20,7 +20,7 @@ jobs:
         shell: bash
       - name: Extract branch name
         shell: bash
-        run: echo "branch=$(echo $GITHUB_REF | sed 's/refs\/heads\///') >> $GITHUB_OUTPUT  
+        run: echo "::set-output branch={branh}::{$(echo $GITHUB_REF | sed 's/refs\/heads\///')}"
         id: extract_branch
             
       - name: Install Python
@@ -50,7 +50,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}       
         with:
           tag_name: eng:${{ steps.extract_branch.outputs.branch }}
-          release_name: Release eng:${{ steps.extract_branch.outputs.branch }}
+          release_name: eng:${{ steps.extract_branch.outputs.branch }}
           body_path: README.md
           draft: false
           prerelease: false
