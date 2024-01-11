@@ -2,8 +2,8 @@ name: Build Workflow
 
 on:
   push:
-    # branches: main  # Если нужно ограничить запуск только для определенной ветки, укажите ее здесь
-
+     branches:
+     - '*' 
 jobs:
 
   build-windows:
