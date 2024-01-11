@@ -18,7 +18,11 @@ jobs:
           echo "GITHUB_REF: $GITHUB_REF"
           echo "TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')"
         shell: bash
-        
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=$(echo $GITHUB_REF | sed 's/refs\/heads\///') >> $GITHUB_OUTPUT  
+        id: extract_branch
+            
       - name: Install Python
         uses: actions/setup-python@v2
         with:
@@ -43,10 +47,10 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}       
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: eng:${{ steps.extract_branch.outputs.branch }}
+          release_name: Release eng:${{ steps.extract_branch.outputs.branch }}
           body_path: README.md
           draft: false
           prerelease: false
