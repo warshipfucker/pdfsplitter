@@ -17,11 +17,12 @@ jobs:
         run: |
           echo "GITHUB_REF: $GITHUB_REF"
           echo "TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')"
+          echo "TAG_2NAME=$(echo${GITHUB_REF##*/})
         shell: bash
       - name: Extract branch name
         shell: bash
-        run: echo branch=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
-        id: extract_branch
+        run: BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+        id: branch
             
       - name: Install Python
         uses: actions/setup-python@v2
