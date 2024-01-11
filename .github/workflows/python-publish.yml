@@ -12,18 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Set tag name from branch
-        run: |
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')"
-          echo "TAG_2NAME=$(echo${GITHUB_REF##*/})
-        shell: bash
-      - name: Extract branch name
-        shell: bash
-        run: BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
-        id: branch
-            
+           
       - name: Install Python
         uses: actions/setup-python@v2
         with:
@@ -33,6 +22,10 @@ jobs:
       - name: Install requirements
         run: |
           pip install -r requirements.txt
+      - name: Set tag name from branch
+        run: |        
+          TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+        shell: bash
 
       - name: Run PyInstaller
         run: |
@@ -48,10 +41,11 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}       
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
         with:
-          tag_name: eng:${{ steps.extract_branch.outputs.branch }}
-          release_name: eng:${{ steps.extract_branch.outputs.branch }}
+          tag_name: ${{ env.BRANCH_NAME }}
+          release_name: ${{ env.BRANCH_NAME }}
           body_path: README.md
           draft: false
           prerelease: false
@@ -61,7 +55,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/pdfsplitter.exe
