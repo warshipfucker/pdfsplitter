@@ -44,6 +44,8 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REF: $GITHUB_REF"
+          TAG_NAME: $(echo $GITHUB_REF | sed 's/refs\/heads\///')"
         with:
           tag_name: ${{ env.TAG_NAME }}
           release_name: ${{ env.TAG_NAME }}
@@ -56,6 +58,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/pdfsplitter.exe
