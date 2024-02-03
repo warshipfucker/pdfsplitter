@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['pdfsplitter.py'],
+a = Analysis(['main.py'],
              binaries=[],
              datas=[],
              hiddenimports=[],
